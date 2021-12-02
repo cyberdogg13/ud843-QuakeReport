@@ -66,6 +66,9 @@ public final class Quaryutils {
                 SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM DD, yyyy");
                 String date = dateFormatter.format(dateObject);
 
+                SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
+                date += "\n " + timeFormat.format(dateObject);
+
                 earthquakes.add(new Earthquake(Magnitude, location, date));
             }
 
