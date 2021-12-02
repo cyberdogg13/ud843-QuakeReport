@@ -5,6 +5,8 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import java.util.ArrayList;
 
@@ -56,7 +58,13 @@ public final class Quaryutils {
 
                 String Magnitude = String.valueOf(propertiesJson.optString("mag"));
                 String location = propertiesJson.optString("place").toString();
-                String date = String.valueOf(propertiesJson.optString("time"));
+
+                // get time of earthquake in  index and converto to readeble date format
+                // export date as string called date
+                long timeInMilliseconds = propertiesJson.optInt("time");
+                Date dateObject = new Date(timeInMilliseconds);
+                SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM DD, yyyy");
+                String date = dateFormatter.format(dateObject);
 
                 earthquakes.add(new Earthquake(Magnitude, location, date));
             }
