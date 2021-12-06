@@ -17,6 +17,8 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
 
     public View getView(int position, View convertview, ViewGroup parent) {
 
+
+
         View listItemView = convertview;
         if (listItemView == null) {
          listItemView = LayoutInflater.from(getContext()).inflate(R.layout.earthquake_list_item, parent, false);
@@ -35,9 +37,14 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         //fill the textview with de date of the current earthquake
         dateView.setText((currentEartQuake.getdate()));
 
-        // find the vie with the view id location
+        // split current location at the firts occurance of "of"
+        String parts[] = currentEartQuake.getlocation().split("(?<=of)");
+
+        // find the view with the view id location
         TextView locationView = (TextView)  listItemView.findViewById(R.id.location);
-        locationView.setText(currentEartQuake.getlocation());
+        locationView.setText(parts[1]);
+        TextView locationoffsetView = (TextView)  listItemView.findViewById(R.id.locatinOffset);
+        locationoffsetView.setText(parts[0]);
 
         return listItemView;
     }

@@ -34,6 +34,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         // Create a fake list of earthquake locations.
         ArrayList<Earthquake> earthquakes = Quaryutils.extractEarthquakes();
 
+        // test lijst van aardbevingen
 //        ArrayList<Earthquake> earthquakes = new ArrayList<>();
 //        earthquakes.add(new Earthquake("2.5", "amsterdam", "21-02-2020"));
 //        earthquakes.add(new Earthquake("4.6", "griekenland", "09-01-2021"));
