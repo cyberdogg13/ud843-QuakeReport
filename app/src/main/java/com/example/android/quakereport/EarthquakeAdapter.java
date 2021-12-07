@@ -1,6 +1,7 @@
 package com.example.android.quakereport;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,15 +38,24 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         //fill the textview with de date of the current earthquake
         dateView.setText((currentEartQuake.getdate()));
 
+
         // split current location at the firts occurance of "of"
-        String parts[] = currentEartQuake.getlocation().split("(?<=of)");
+       try{
+           String parts[] = currentEartQuake.getlocation().split("(?<=of)");
 
-        // find the view with the view id location
-        TextView locationView = (TextView)  listItemView.findViewById(R.id.location);
-        locationView.setText(parts[1]);
-        TextView locationoffsetView = (TextView)  listItemView.findViewById(R.id.locatinOffset);
-        locationoffsetView.setText(parts[0]);
+           // find the view with the view id location
+           TextView locationView = (TextView)  listItemView.findViewById(R.id.location);
+           locationView.setText(parts[1]);
+           TextView locationoffsetView = (TextView)  listItemView.findViewById(R.id.locatinOffset);
+           locationoffsetView.setText(parts[0]);
+       } catch (Exception e) {
 
+           System.out.println("error");
+           TextView locationView = (TextView)  listItemView.findViewById(R.id.location);
+           locationView.setText(currentEartQuake.getlocation());
+           TextView locationoffsetView = (TextView)  listItemView.findViewById(R.id.locatinOffset);
+           locationoffsetView.setText(" ");
+       }
         return listItemView;
     }
 }

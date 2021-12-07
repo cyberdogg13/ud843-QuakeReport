@@ -70,6 +70,8 @@ public final class Quaryutils {
                 date += "\n " + timeFormat.format(dateObject);
 
                 earthquakes.add(new Earthquake(Magnitude, location, date));
+
+
             }
 
 
