@@ -15,14 +15,22 @@
  */
 package com.example.android.quakereport;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 public class EarthquakeActivity extends AppCompatActivity {
+
 
     public static final String LOG_TAG = EarthquakeActivity.class.getName();
 
@@ -55,5 +63,18 @@ public class EarthquakeActivity extends AppCompatActivity {
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
         earthquakeListView.setAdapter(adapter);
+
+        earthquakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Earthquake currentEarthquake = earthquakes.get(position);
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(currentEarthquake.geturl()));
+                startActivity(browserIntent);
+
+                //Toast.makeText(EarthquakeActivity.this, currentEarthquake.geturl(),Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
+
 }
