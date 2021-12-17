@@ -113,6 +113,7 @@ public final class Quaryutils {
      * parsing a JSON response.
      */
     public static ArrayList<Earthquake> extractFeatureFromJson(String earthquakeJSON) {
+
         // If the JSON string is empty or null, then return early.
         if (TextUtils.isEmpty(earthquakeJSON)) {
             return null;
