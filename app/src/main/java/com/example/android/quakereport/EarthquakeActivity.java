@@ -22,14 +22,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
-import android.os.AsyncTask;
-import org.w3c.dom.Text;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class EarthquakeActivity extends AppCompatActivity {
 
@@ -37,7 +33,7 @@ public class EarthquakeActivity extends AppCompatActivity {
 
     /** URL for earthquake data from the USGS dataset */
     private static final String USGS_REQUEST_URL =
-            "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
+            "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=20";
 
     private EarthquakeAdapter mAdapter;
 
@@ -90,7 +86,6 @@ public class EarthquakeActivity extends AppCompatActivity {
             if (urls.length < 1 || urls[0] == null) {
                 return null;
             }
-
             List<Earthquake> result = Quaryutils.fetchEarthquakeData(urls[0]);
             return result;
         }

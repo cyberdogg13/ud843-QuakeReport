@@ -25,7 +25,9 @@ import java.util.List;
  * Helper methods related to requesting and receiving earthquake data from USGS.
  */
 public final class Quaryutils {
-    /** Tag for the log messages */
+    /**
+     * Tag for the log messages
+     */
     private static final String LOG_TAG = Quaryutils.class.getSimpleName();
 
     /**
@@ -40,6 +42,7 @@ public final class Quaryutils {
         }
         return url;
     }
+
     /**
      * Make an HTTP request to the given URL and return a String as the response.
      */
@@ -83,6 +86,7 @@ public final class Quaryutils {
         }
         return jsonResponse;
     }
+
     /**
      * Convert the {@link InputStream} into a String which contains the
      * whole JSON response from the server.
@@ -134,15 +138,16 @@ public final class Quaryutils {
                 // get time of earthquake in  index and converto to readeble date format
                 // export date as string called date
 
-                long timeInMilliseconds = propertiesJson.optInt("time");
-                Date dateObject = new Date(timeInMilliseconds);
-                SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM, DD, yyyy");
-                String date = dateFormatter.format(dateObject);
-
-                SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
-                date += "\n " + timeFormat.format(dateObject);
-
-                earthquakes.add(new Earthquake(Magnitude, location, date, url));
+//                long timeInMilliseconds = propertiesJson.optInt("time");
+//                Date dateObject = new Date(timeInMilliseconds);
+//                SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM, DD, yyyy");
+//                String date = dateFormatter.format(dateObject);
+//                SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
+//                date += "\n " + timeFormat.format(dateObject);
+                long rawdate = propertiesJson.optLong("time");
+                String date = new java.text.SimpleDateFormat("dd/MMM/yyyy"+"\n"+"HH:mm:ss").format(new java.util.Date(rawdate));
+                //Epoch in seconds, remove '*1000' for milliseconds.
+                        earthquakes.add(new Earthquake(Magnitude, location, date, url));
             }
             // build up a list of Earthquake objects with the corresponding data.
 
@@ -156,6 +161,7 @@ public final class Quaryutils {
         // Return the list of earthquakes
         return earthquakes;
     }
+
     /**
      * Query the USGS dataset and return a list of {@link Earthquake} objects.
      */
